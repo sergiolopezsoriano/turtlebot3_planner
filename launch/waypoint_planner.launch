@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="waypoints_file"  default="waypoints1"/>
+    <arg name="trajectory_file" default="trajectory1"/>
+    <arg name="output_file"     default="output1.db"/>
+    <node pkg="turtlebot3_planner" type="waypoint_planner" name="waypoint_planner" output="screen">
+        <param name="output_file" type="string" value="$(arg output_file)"/>
+        <rosparam file="$(find turtlebot3_planner)/config/waypoint_planner.yaml" command="load" />
+        <rosparam file="$(find turtlebot3_planner)/config/waypoints/$(arg waypoints_file).yaml" command="load"/>
+        <rosparam file="$(find turtlebot3_planner)/config/trajectory/$(arg trajectory_file).yaml" command="load"/>
+    </node>
+</launch>
